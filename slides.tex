@@ -1,0 +1,162 @@
+\documentclass[xetex,mathserif,serif]{beamer}
+
+% Language settings.
+\usepackage{polyglossia}
+\setdefaultlanguage[babelshorthands=true]{russian}
+
+% Setting outer theme.
+\useoutertheme{infolines}
+
+% Setting font.
+\usepackage{fontspec}
+\setmainfont{FreeSans}
+\newfontfamily{\russianfonttt}{FreeSans}
+
+% Code highlighting.
+\usepackage[outputdir=temp]{minted}
+\usepackage{xcolor}
+
+% Images.
+\usepackage{graphicx}
+\usepackage{animate}
+
+\title{ClickHouse}
+\author[Александр Смирнов]{Александр Смирнов}
+\date{17.09.2020}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage{}
+\end{frame}
+
+\begin{frame}
+	\frametitle{ClickHouse}
+
+	\begin{itemize}
+		\item Распределенная аналитическая столбцовая (column-oriented) СУБД
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Почему column-oriented?}
+
+	\begin{center}
+		\animategraphics[
+			loop,
+			controls,
+			width=0.7\linewidth
+		]{14}{images/row-oriented/row-oriented-}{0}{86}
+	\end{center}
+
+	\begin{itemize}
+		\item В обычной row-oriented СУБД данные хранятся по строкам
+		\item Хорошо подходит для обычных сценариев
+		      \begin{itemize}
+			      \item изменить поле у пользователя
+		      \end{itemize}
+		\item Плохо подходит для задачи аналитики
+		      \begin{itemize}
+			      \item пусть много столбцов, e.g. время, браузер, модель телефона
+			      \item строки — события, e.g. просмотр страницы
+			      \item нужен отчет по моделям телефона
+		      \end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Почему column-oriented?}
+
+	\begin{center}
+		\animategraphics[
+			loop,
+			controls,
+			width=0.7\linewidth
+		]{14}{images/column-oriented/column-oriented-}{0}{14}
+	\end{center}
+
+	\begin{itemize}
+		\item Подходит система где данные хранятся по столбцам
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{История}
+
+	\begin{itemize}
+		\item Yandex.Metrika
+		\item Данные по действиям пользователей на сайтах
+            \begin{itemize}
+                \item как сохранить данные так, чтобы быстро строить отчеты
+                \item изначально предагрегировали данные, но пользователи хотели больше вариативности
+            \end{itemize}
+		\item Пробовали разные столбцовые субд, не подошло
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Распространение}
+
+	\begin{itemize}
+		\item Open-source
+		\item Есть своя небольшая ниша
+		\item В России
+            \begin{itemize}
+                \item Яндекс
+                \item Mail
+                \item СКБ Контур
+                \item Rambler
+            \end{itemize}
+		\item За рубежом
+            \begin{itemize}
+                \item Cloudfare
+                \item Wikimedia
+                \item Nvidia
+            \end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Преимущества}
+
+	\begin{itemize}
+		\item Скорость
+		\item Гибкость
+            \begin{itemize}
+                \item доступны все данные, что хотим то и делаем с ними
+            \end{itemize}
+		\item Масштабируемость
+            \begin{itemize}
+                \item распределенное хранение данных
+            \end{itemize}
+		\item Цена 
+            \begin{itemize}
+                \item цена разработчиков, не дорого
+            \end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Недостатки}
+
+	\begin{itemize}
+		\item Ограниченная поддержка JOIN
+		\item Нет UPDATE и DELETE
+		\item Слабая совместимость со стандартом SQL
+	\end{itemize}
+\end{frame}
+
+
+
+% # как хранятся данные в таблицах
+
+% в первую очередь данные хранятся на одной машинк
+% далее добавляется распределенность
+
+% # как хранятся данные в merge tree
+
+\end{document}

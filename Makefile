@@ -2,10 +2,10 @@ PAPER=slides.tex
 COMPILER=xelatex
 TEMPDIR=temp
 FLAGS=-shell-escape \
-	  -interaction nonstopmode \
-	  -halt-on-error \
-	  -file-line-error \
-	  -output-directory=$(TEMPDIR)
+      -interaction nonstopmode \
+      -halt-on-error \
+      -file-line-error \
+      -output-directory=$(TEMPDIR)
 
 all:
 	mkdir -p $(TEMPDIR)

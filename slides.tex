@@ -1,5 +1,14 @@
 \documentclass[xetex,mathserif,serif]{beamer}
 
+% Hyperlinks.
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
 % Language settings.
 \usepackage{polyglossia}
 \setdefaultlanguage[babelshorthands=true]{russian}
@@ -234,20 +243,30 @@
 		      \begin{itemize}
 			      \item сделать интерпретатор выражений
 			      \item в аналитической СУБД нужно быстро фильтровать и агрегировать миллиарды строк
-			      \item будет тормозить по cpu
+			      \item будет тормозить по CPU
 		      \end{itemize}
 		\item Решения
 		      \begin{itemize}
-			      \item Кодогенерация для компиляции запроса
+			      \item кодогенерация для компиляции запроса
 			            \begin{itemize}
 				            \item компилируем машинный код и применяем для каждой строки
 			            \end{itemize}
-			      \item Векторная обработка запроса
+			      \item векторная обработка запроса
 			            \begin{itemize}
 				            \item все операции пишутся не для отдельных значений, а для векторов
 				            \item не только храним данные по столбцам, но и обрабатываем по столбцам
 			            \end{itemize}
 		      \end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Benchmark}
+
+	\begin{itemize}
+		\item \href{http://gg.gg/m73qs}{Сравнение с другими СУБД}
+		\item \href{https://clickhouse.tech/benchmark/hardware/}{Сравнение на разном железе}
 	\end{itemize}
 \end{frame}
 
